@@ -18,7 +18,7 @@ public final class RoyalAutoClicker extends JavaPlugin {
     private String pluginVersion;
     private HashMap<UUID, Double> clickRate = new HashMap<>();
     public HashMap<UUID, Integer> clickCount = new HashMap<>();
-    ConsoleCommandSender console = Bukkit.getConsoleSender();
+    private ConsoleCommandSender console = Bukkit.getConsoleSender();
 
 
     @Override
@@ -36,11 +36,6 @@ public final class RoyalAutoClicker extends JavaPlugin {
         getRate();
     }
 
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
-
     public String getPluginVersion() {
         return pluginVersion;
     }
@@ -53,7 +48,7 @@ public final class RoyalAutoClicker extends JavaPlugin {
         return ChatColor.translateAlternateColorCodes('&', msg);
     }
 
-    public void getRate() {
+    private void getRate() {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
             LinkedList<Double> ll = new LinkedList();
             double sum = 0.0D;
@@ -62,6 +57,7 @@ public final class RoyalAutoClicker extends JavaPlugin {
             public void run() {
                 for(Player p : Bukkit.getOnlinePlayers()) {
                     if (RoyalAutoClicker.this.clickCount.containsKey(p.getUniqueId())) {
+                        if(p.hasPermission("royalautoclicker.bypass")) return;
                         double count = (double)(Integer)RoyalAutoClicker.this.clickCount.get(p.getUniqueId());
                         if(count > (double)RoyalAutoClicker.this.getConfig().getInt("Click-Until-Ban")){
                             getServer().dispatchCommand(console, getConfig().getString("Ban-CMD").replaceAll("%player%", p.getName()));
@@ -80,10 +76,7 @@ public final class RoyalAutoClicker extends JavaPlugin {
 
                         this.total = 0.0D;
 
-                        try {
-                            this.ll.remove();
-                        } catch (Exception ignored) {
-                        }
+                        try {this.ll.remove();} catch (Exception ignored) {}
 
                         RoyalAutoClicker.this.clickRate.put(p.getUniqueId(), count);
                         RoyalAutoClicker.this.clickCount.put(p.getUniqueId(), 0);

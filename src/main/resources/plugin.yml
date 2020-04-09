@@ -9,3 +9,7 @@ commands:
     description: Main command.
     usage: /<command>
     aliases: [cps, royalautoclicker, royalcps]
+permissions:
+  royalautoclicker.bypass:
+    description: Bypass permission.
+    default: op
