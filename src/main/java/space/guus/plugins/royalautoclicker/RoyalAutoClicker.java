@@ -67,9 +67,7 @@ public final class RoyalAutoClicker extends JavaPlugin {
                             getServer().dispatchCommand(console, getConfig().getString("Ban-CMD").replaceAll("%player%", p.getName()));
                         }
                         if (count > (double)RoyalAutoClicker.this.getConfig().getInt("Click-Until-Notify")) {
-                            for(Player on : Bukkit.getOnlinePlayers()) {
-                                getServer().dispatchCommand(console, getConfig().getString("Notify-CMD").replaceAll("%player%", p.getName()).replaceAll("%cps%", String.valueOf(count)));
-                            }
+                            getServer().dispatchCommand(console, getConfig().getString("Notify-CMD").replaceAll("%player%", p.getName()).replaceAll("%cps%", String.valueOf(count)));
                         }
 
                         if (count > 0.0D) {
