@@ -1,0 +1,8 @@
+# RoyalAutoClicker by Gusuu
+
+# Settings
+Click-Until-Notify: 15
+Click-Until-Ban: 35
+
+Notify-CMD: "sendtoproxy snotify &3[skyblock] &e%player% &7might be using AutoClicker. (%cps% CPS)"
+Ban-CMD: "infraction add %player% autoclicker"

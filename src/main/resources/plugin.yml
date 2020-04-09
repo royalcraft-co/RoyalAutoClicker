@@ -1,0 +1,11 @@
+name: RoyalAutoClicker
+version: ${project.version}
+main: space.guus.plugins.royalautoclicker.RoyalAutoClicker
+authors: [Gusuu]
+description: CPS/AutoClicker checker for RoyalCraft
+website: http://guus.space
+commands:
+  autoclicker:
+    description: Main command.
+    usage: /<command>
+    aliases: [cps, royalautoclicker, royalcps]
