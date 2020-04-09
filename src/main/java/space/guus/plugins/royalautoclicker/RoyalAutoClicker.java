@@ -32,6 +32,8 @@ public final class RoyalAutoClicker extends JavaPlugin {
         getCommand("autoclicker").setExecutor(new MainCommand(this));
         // Register events
         getServer().getPluginManager().registerEvents(new ClickEvent(this), this);
+
+        getRate();
     }
 
     @Override
